@@ -9334,6 +9334,10 @@
           22
         ]
       },
+      "MinimumActionPointReserve": {
+        "type": "input",
+        "value": 200
+      },
       "ExecuteFixedPatrolScan": {
         "type": "checkbox",
         "value": false

@@ -1914,6 +1914,7 @@
     },
     "OpsiHazard1Leveling": {
       "TargetZone": 0,
+      "MinimumActionPointReserve": 200,            
       "ExecuteFixedPatrolScan": false
     },
     "OpsiFleet": {
