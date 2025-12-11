@@ -9357,6 +9357,10 @@
       "ExecuteFixedPatrolScan": {
         "type": "checkbox",
         "value": false
+      },
+      "Cl1Filter": {
+        "type": "textarea",
+        "value": "ActionPoint"
       }
     },
     "OpsiFleet": {

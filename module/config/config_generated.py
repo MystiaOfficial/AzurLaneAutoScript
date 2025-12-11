@@ -451,6 +451,7 @@ class GeneratedConfig:
     OpsiHazard1Leveling_SirenBug_Zone = 0 
     OpsiHazard1Leveling_MinimumActionPointReserve = 200   
     OpsiHazard1Leveling_ExecuteFixedPatrolScan = False
+    OpsiHazard1Leveling_Cl1Filter = 'ActionPoint > PurpleCoins'
 
     # Group `IslandProduction`
     IslandProduction_HardFloorItems = '{}'
