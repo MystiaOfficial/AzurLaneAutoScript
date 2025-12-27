@@ -9334,6 +9334,22 @@
           22
         ]
       },
+      "YellowCoinPreserve": {
+        "type": "input",
+        "value": 100000
+      },      
+      "SirenResearch_Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "SirenBug_Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "SirenBug_Zone": {
+        "type": "input",
+        "value": 0
+      },
       "MinimumActionPointReserve": {
         "type": "input",
         "value": 200
