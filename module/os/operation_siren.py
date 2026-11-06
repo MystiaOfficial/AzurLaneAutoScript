@@ -1,6 +1,7 @@
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
 from module.os.fleet import BossFleet
+from datetime import datetime
 from module.os.globe_operation import OSExploreError
 from module.os.map import OSMap
 from module.os_handler.action_point import OCR_OS_ADAPTABILITY
