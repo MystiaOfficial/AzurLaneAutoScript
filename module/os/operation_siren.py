@@ -8,7 +8,7 @@ from module.os_handler.action_point import OCR_OS_ADAPTABILITY
 from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER
 from module.os_shop.assets import OS_SHOP_CHECK
 from module.shop.shop_voucher import VoucherShop
-
+from module.config.utils import get_server_next_update, get_os_reset_remain, get_os_next_reset
 
 class OperationSiren(OSMap):
     def os_port_mission(self):
