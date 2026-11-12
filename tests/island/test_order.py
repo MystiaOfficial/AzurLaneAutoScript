@@ -1,8 +1,6 @@
 """Order recognition goldens and season-order scheduling rules."""
-from datetime import datetime
-
-import module.config.server as server
-from module.island.data import DIC_ISLAND_ACTIVITY
+from module.island.assets import ISLAND_ORDER_SPEED_UP_CLOSE
+from module.island.season_data import DIC_ISLAND_SEASON
 from module.island.order import IslandOrder, get_season_order_id
 from module.testing.screenshot import image
 
@@ -312,13 +310,10 @@ class StoredOrderConfig:
 
 
 class TestSeasonOrderScheduling:
-    def test_repeated_autumn_order_prefers_current_activity(self):
-        activity = DIC_ISLAND_ACTIVITY[990023]
-        start = datetime.strptime(activity['start_time'][server.server], '%Y-%m-%d %H:%M:%S')
-        end = datetime.strptime(activity['end_time'][server.server], '%Y-%m-%d %H:%M:%S')
+    def test_repeated_autumn_order_prefers_selected_season(self):
         assert get_season_order_id(
             {4011: 5, 4013: 5},
-            current_time=start + (end - start) / 2,
+            DIC_ISLAND_SEASON['season_20260806_cn'],
         ) == 100060
 
     def test_unchanged_stuck_order_does_not_replan_after_date_change(self):
@@ -335,3 +330,25 @@ class TestSeasonOrderScheduling:
         order.run()
 
         assert order.config.delayed
+
+
+class TestSpeedupPopupJP:
+    @image('island/order/speedup_popup_jp.webp', server='jp')
+    def test_speedup_popup_is_closed_on_every_detection(self, main: IslandOrder):
+        assert main.handle_island_additional()
+        assert main.handle_island_additional()
+
+        actual = {'clicks': [button.name for button in main.device.clicks],
+                  'button': ISLAND_ORDER_SPEED_UP_CLOSE.button}
+        main.device.review(actual, [(ISLAND_ORDER_SPEED_UP_CLOSE.button, 'close speedup')])
+        assert actual == {
+            'clicks': ['ISLAND_ORDER_SPEED_UP_CLOSE', 'ISLAND_ORDER_SPEED_UP_CLOSE'],
+            'button': (1026, 89, 1063, 126),
+        }
+
+    @image('island/order/cooldown_with_speedup_button_jp.webp', server='jp')
+    def test_cooldown_page_has_no_popup(self, main: IslandOrder):
+        handled = main.handle_island_additional()
+        actual = {'handled': handled, 'clicks': [button.name for button in main.device.clicks]}
+        main.device.review(actual, [(ISLAND_ORDER_SPEED_UP_CLOSE.area, 'popup close absent')])
+        assert actual == {'handled': False, 'clicks': []}

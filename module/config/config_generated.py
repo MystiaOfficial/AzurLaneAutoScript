@@ -454,6 +454,9 @@ class GeneratedConfig:
     OpsiHazard1Leveling_ExecuteFixedPatrolScan = False
     OpsiHazard1Leveling_Cl1Filter = 'ActionPoint > PurpleCoins'
 
+    # Group `IslandGeneral`
+    IslandGeneral_Season = 'season_20261105_cn'  # season_20260806_cn, season_20261105_cn
+
     # Group `IslandProduction`
     IslandProduction_HardFloorItems = '{}'
     IslandProduction_DailyBufferItems = '{}'
