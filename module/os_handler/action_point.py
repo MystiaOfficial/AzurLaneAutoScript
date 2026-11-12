@@ -404,11 +404,12 @@ class ActionPointHandler(UI, MapEventHandler):
             box = []
             for index in [1, 2, 3]:
                 if self._action_point_box[index] > 0:
-                    if self._action_point_current + ACTION_POINT_BOX[index] >= 200:
+                    if self._action_point_current + ACTION_POINT_BOX[index] <= 200:
                         box.append(index)
                     else:
-                        box.insert(0, index)
-
+                        box.append(-index)
+            box = [abs(i) for i in box if i>0 ]+[abs(i) for i in box if i<0]
+            
             # Use action point boxes
             if len(box):
                 if self._action_point_total > self.config.OS_ACTION_POINT_PRESERVE:
