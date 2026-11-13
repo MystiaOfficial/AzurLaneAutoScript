@@ -707,9 +707,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             elif 'event' in result and grid.is_scanning_device:
                 self._solved_map_event.add('is_scanning_device')
                 self.os_auto_search_run(drop=drop)
-                # 调用塞壬BUG处理功能
-                self._handle_siren_bug_reinteract(drop=drop)
-                return True
+                
             else:
                 logger.warning(f'Arrive question with unexpected result: {result}, expected: {grid.str}')
                 continue
@@ -868,7 +866,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
                     drop=drop, walk_out_of_step=False, confirm_timer=Timer(1.5, count=4))
             self.os_auto_search_run(drop=drop)
             # 调用塞壬BUG处理功能
-            self._handle_siren_bug_reinteract(drop=drop)
+            #self._handle_siren_bug_reinteract(drop=drop)
             if 'event' in result:
                 self._solved_map_event.add('is_scanning_device')
                 return True
